@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+{{#if announcement.content.en_text}}
+<nav id="post_nav">
+	<ul class="nav nav-tabs">
+	  	<li class="nav-item active">
+	    	<a class="nav-link announcement_content" href="#">Ελληνικά</a>
+	  	</li>
+	  	<li class="nav-item">
+	    	<a class="nav-link announcement_en_content" href="#">Αγγλικά</a>
+	  	</li>
+	  <!-- <li class="nav-item">
+	    <a class="nav-link" href="#">Φωτογραφίες</a>
+	  </li> -->
+	</ul>
+</nav>
+{{/if}}
+
+<section class="display_cur_announcement">
+	<div class="announcement_text">	
+		{{{announcement.content.text}}}
+	</div>
+	{{#if announcement.content.en_text}}
+	<div class="announcement_en_text">
+		{{{announcement.content.en_text}}}
+	</div>
+	{{/if}}
+</section>

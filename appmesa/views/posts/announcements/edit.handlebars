@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="edit_announcement">
+	<div id="header">
+		<label for="title">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Τίτλος</span>
+		</label>
+		<div id="errtitle" class="error"></div>
+		<input id="title" class="form-control" type="text" value='{{announcement.content.title}}'/>
+	</div>
+	<div id="body">
+		<label for="content">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Κείμενο</span>
+		</label>
+		<div id="errcontent" class="error"></div>
+		<textarea id="content" class="form-control">{{announcement.content.text}}</textarea>
+	</div>
+	<div id="tags_container">
+		<label for="tags">Ετικέτες</label>
+		<input id="tags" type="text" placeholder="#ITE#Πανεπιστήμιο Κρήτης" value='{{mergeTags announcement.tags}}' />
+	</div>
+	<hr>
+	{{#if announcement.content.en_title}}
+	<article id="other_languages">
+		<div id="other_languages_btn_container">
+			<button id="hide_language" class="btn button">Απόκρυψη</button>
+			<button id="delete_language" class="btn button" style="">Διαγραφή</button>
+		</div>
+		<div id="en_header">
+            <label for="en_title">Τίτλος (Αγγλικά)</label>
+            <div id="errtitle" class="error"></div>
+            <input id="en_title" class="form-control" type="text" value='{{announcement.content.en_title}}'/>
+        </div>
+        <div id="en_body">
+        	<label for="en_content">Κείμενο (Αγγλικά)</label>
+            <div id="en_errcontent" class="error"></div>
+            <textarea id="en_content">{{announcement.content.en_text}}</textarea>
+        </div>
+    </article>
+    <button id="new_language" class="btn button" style="display: none;">Νέα Γλώσσα (Αγγλικά)</button>
+	{{else}}
+	<article id="other_languages"></article>
+	<button id="new_language" class="btn button">Νέα Γλώσσα (Αγγλικά)</button>
+	{{/if}}
+	<hr>
+	<div id="pin_announcement">
+		{{#if announcement.content.pinned}}
+        <input id="pinned" type="checkbox" checked="checked"/>
+        {{else}}
+        <input id="pinned" type="checkbox"/>
+        {{/if}}
+        <label for="pinned"> Καρφίτσωμα Ανακοίνωσης</label>
+    </div>
+    <hr>
+	<div class="editannoucement_btn">
+		<button id="submit_edit_announcement" mesa-data="{{announcement._id}}" class="btn button btn-primary">Αποθήκευση</button>
+	</div>
+</section>

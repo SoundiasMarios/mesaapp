@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<section id="display_all_announcements">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		{{#if announcements}}
+		{{#each announcements}}
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading{{this._id}}">
+      				<h4 class="panel-title">
+      					{{#if this.content.en_title}}
+							<span class="content_title"> {{this.content.title}} | {{this.content.en_title}}</span>
+						{{else}}
+							<span class="content_title"> {{this.content.title}}</span>
+						{{/if}}
+					</h4>
+					<hr>
+					<div class='content_info'>
+			      		<div class="group">
+			      			<p><span class="glyphicon glyphicon-file"></span> Ανακοίνωση</p>
+			      		</div>
+			        	<div class="group">
+				        	<div class="posted_by">
+								<p>
+									<span class="glyphicon glyphicon-user"></span>
+									{{#if this.postedBy.username}}
+										<span> {{../this.postedBy.username}},</span>
+									{{else}}
+										<span> - ,</span>
+									{{/if}}
+									<span> {{changeDateFormat this.uploadDate}}</span>
+								</p>
+							</div>
+						</div>
+						{{#if this.content.en_title}}
+						<div class="group">
+			        		<p><span class="glyphicon glyphicon-globe"></span> Ελληνικά, Αγγλικά</p>
+			        	</div>
+			        	{{/if}}
+			        </div>
+			        <div class="tags">
+						<span class="glyphicon glyphicon-tags"></span>
+						{{#each this.tags}}
+						<a href="#" class="tag" mesa-data="{{this}}">#{{this}}</a>
+						{{/each}}
+					</div>
+				</div>
+		        <div id="collapse{{this._id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{this._id}}">
+					<div class="panel-body"></div>
+				</div>
+				<div class="btn_show_post">
+					<button class="moreinfolink_announcement btn btn-default collapsed" mesa-data="{{this._id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{this._id}}" aria-expanded="false" aria-controls="collapse{{this._id}}" type="submit"><span class="glyphicon glyphicon-menu-down"></span></button>
+				</div>
+			</div>
+			<!-- <hr> -->
+		{{/each}}
+		{{#ifEqual announcements.length postsLimit}}
+			<div id="btn_container">
+				<button id="more_announcements" class="btn" mesa-next-page="1">Εμφάνιση Περισσότερων</button>
+			</div>
+		{{/ifEqual}}
+	{{else}}
+		<p id="empty_post_list">Δεν υπάρχουν ανακοινώσεις</p>
+	{{/if}}
+	</div>
+</section>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<h1 class="title"> Πληροφορίες Χρήστη</h1>
+<section id="display_info">
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Όνομα</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="firstname" {{!--class="form-control-static"--}}>{{user.firstname}}</p>
+		    </div>
+  		</div>
+  	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Επώνυμο</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="lastname">{{user.lastname}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Username</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="username">{{user.username}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+	  	<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Κωδικός</label>
+		    <div class="col-sm-6 col-md-6">
+		    	{{#ifEqual user.username current_user}}
+					<p id="password">{{user.password}}</p>
+				{{else}}
+					<p id="hide_password"><i>Δεν είναι διαθέσιμο το περιεχόμενο</i></p>
+				{{/ifEqual}}
+			</div>
+	    </div>
+  	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Email</label>
+		    <div class="col-sm-6 col-md-6">
+		      <p id="email">{{user.email}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+	  	<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Ημερομηνία Γέννησης</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="birthdate">{{changeDateFormat user.birthdate}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Φύλο</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="gender">{{genderType user.gender}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+  	  	<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Πόλη</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="city">{{user.city}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Τηλέφωνο</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="phone">{{user.phone}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+	  	<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Περισσότερες Πληροφορίες</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="moreinfo">{{user.moreinfo}}</p>
+		    </div>
+	  	</div>
+	</div>
+	<div class="info_field">
+		<div class="form-group row">
+		    <label class="col-sm-6 col-md-6 col-form-label">Φωτογραφία</label>
+		    <div class="col-sm-6 col-md-6">
+				<p id="photo">
+					<img id="photo_profile" src="/image/userprofile/{{user.username}}">
+				</p>
+	    	</div>
+  		</div>
+  	</div>
+  	<hr>
+	<div id="buttons_container">
+		<button id="edit_profile" class="btn btn-primary" mesa-data="{{user.username}}" type="submit">Επεξεργασία Λογαριασμού</button>
+		<button id="delete_my_profile" class="btn btn-danger" type="submit">Διαγραφή Λογαριασμού</button>
+	</div>
+</section>

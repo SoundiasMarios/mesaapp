@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="new_announcement">
+	<div id="header">
+		<label for="title">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Τίτλος</span>
+		</label>
+		<div id="errtitle" class="error"></div>
+		<input id="title" class="form-control" type="text"/>
+	</div>
+	<div id="body">
+		<label for="content">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Κείμενο</span>
+		</label>
+		<div id="errcontent" class="error"></div>
+		<textarea id="content"></textarea>
+	</div>
+	<div id="tags_container">
+		<label for="tags">Ετικέτες</label>
+		<input id="tags" type="text" placeholder="#ITE#Πανεπιστήμιο Κρήτης" />
+	</div>
+	<hr>
+	<article id="other_languages"></article>
+	<button id="new_language" class="btn button">Νέα Γλώσσα (Αγγλικά)</button>
+	<hr>
+	<div id="pin_announcement">
+        <input id="pinned" type="checkbox"/>
+        <label for="pinned"> Καρφίτσωμα Ανακοίνωσης</label>
+    </div>
+    <hr>
+	<div class="newannoucement_btn">
+		<button id="submit_announcement" class="btn button btn-primary">Δημοσίευση</button>
+	</div>
+</section>

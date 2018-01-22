@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<section id="display_all_users">
+	<h1 class="title">Λίστα Χρηστών</h1>
+	<hr>
+	{{#each users}}
+		<div class="user_field form-group row">
+		    <img class="profile_photo col-sm-2" src="/image/userprofile/{{this.username}}"/>
+		    <div class="group">
+			    <p class="col-sm-3">{{this.lastname}} {{this.firstname}}</p>
+			    <p class="col-sm-3">{{this.email}}</p>
+		    </div>
+		    <div class="buttons_container col-sm-4">
+				<button id="edit_profile" class="btn btn-primary" mesa-data="{{this.username}}" type="submit">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+				<button class="delete_user btn btn-danger" mesa-data="{{username}}" type="submit">
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+			</div>
+		</div>
+		<hr>
+	{{/each}}
+</section>

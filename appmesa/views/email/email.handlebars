@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>Καλώς ορίσατε στο Mesa</h1>
+<p>Για να συνδεθείτε στο σύστημα πατήστε το παρακάτω σύνδεσμο <a href="http://localhost:3000/forms/signin" target="blank">Mesa_SignIn</a>
+και δώστε τα παρακάτω στοιχεία</p>
+<p><b>Στοιχεία Χρήστη</b><br>
+Username : {{username}}<br>
+Password : {{password}}<br>
+{{#ifEqual role 'simple_user'}}
+	Τύπος Χρήστη : Απλός
+{{else}}
+	Τύπος Χρήστη : Διαχειριστής<br><br>
+	Κωδικός πρόσβασης συσκευών (KEY): {{deviceKey}}
+{{/ifEqual}}
+</p>
+</body>
+</html>

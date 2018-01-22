@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MESA</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+
+		<script type="text/javascript" src="/js/reload_back_page.js"></script>
+
+		<link href = "/lib/bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/mesa.css">
+
+		<script type="text/javascript" src="/lib/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/lib/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/form.js"></script>
+		<script type="text/javascript" src="/js/user.js"></script>
+		<script type="text/javascript" src="/js/post.js"></script>
+		<script type="text/javascript" src="/js/announcement.js"></script>
+		<script type="text/javascript" src="/js/event.js"></script>
+		<script type="text/javascript" src="/js/gallery.js"></script>
+
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		  	<div class="container-fluid">
+		    	<div class="navbar-header">
+		      		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mesa_navbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>                        
+		      		</button>
+		      		<a class="navbar-brand" href="/">MESA</a>
+		    	</div>
+		    	<div id="mesa_navbar" class="collapse navbar-collapse">
+		    		<div class="col-sm-1 col-md-1">
+        			</div>
+        			<div class="navbar-left navbar-form">
+			            <div id="search-input" class="input-group">
+			                <input id="search_text" type="text" class="form-control" placeholder="Αναζήτηση" />
+			                <span class="input-group-btn">
+			                    <button id="search_btn" class="btn btn-default" type="button">
+			                        <i class="glyphicon glyphicon-search"></i>
+			                    </button>
+			                </span>
+			            </div>
+				    </div>
+		      		<ul class="nav navbar-nav navbar-right menu">
+		      			{{#if allposts_selected}}
+			            <li class="selected default-menu-item"><a href="/" >Όλα</a></li>
+			            {{else}}
+			            <li class="default-menu-item"><a href="/" >Όλα</a></li>
+			            {{/if}}
+			            {{#if announcements_selected}}
+			            <li class="selected default-menu-item"><a href="#" id="show_all_announcements">Ανακοινώσεις</a></li>
+			            {{else}}
+			            <li class="default-menu-item"><a href="#" id="show_all_announcements">Ανακοινώσεις</a></li>
+			            {{/if}}
+			            {{#if events_selected}}
+			            <li class="selected default-menu-item"><a href="#" id="show_all_events">Εκδηλώσεις</a></li>
+			            {{else}}
+			            <li class="default-menu-item"><a href="#" id="show_all_events">Εκδηλώσεις</a></li>
+			            {{/if}}
+			            {{#if important_selected}}
+			            <li class="selected default-menu-item"><a href="#" id="show_all_important">Σημαντικά</a></li>
+			            {{else}}
+			            <li class="default-menu-item"><a href="#" id="show_all_important">Σημαντικά</a></li>
+			            {{/if}}
+		          	</ul>
+		   		</div>
+		  </div>
+		</nav>
+		<section id="mesa_container">
+			<div id="server_message" class="error"></div>
+			{{{body}}}
+		</section>
+	</body>
+</html>

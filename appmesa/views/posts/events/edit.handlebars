@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="edit_event">
+	<div id="header">
+		<label for="title">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Τίτλος</span>
+		</label>
+		<div id="errtitle" class="error"></div>
+		<input id="title" type="text" value='{{event.content.title}}'/>
+	</div>
+	<div id="body">
+		<label for="content">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Κείμενο</span>
+		</label>
+		<div id="errcontent" class="error"></div>
+		<textarea id="content">{{event.content.text}}</textarea>
+	</div>
+	<div id="tags_container">
+		<label for="tags">Ετικέτες</label>
+		<input id="tags" type="text" placeholder="#ITE#Πανεπιστήμιο Κρήτης" value='{{mergeTags event.tags}}' />
+	</div>
+	<hr>
+	{{#if event.content.en_title}}
+	<article id="other_languages">
+		<div id="other_languages_btn_container">
+			<button id="hide_language" class="btn button">Απόκρυψη</button>
+			<button id="delete_language" class="btn button" style="">Διαγραφή</button>
+		</div>
+		<div id="en_header">
+            <label for="en_title">Τίτλος (Αγγλικά)</label>
+            <div id="errtitle" class="error"></div>
+            <input id="en_title" class="form-control" type="text" value='{{event.content.en_title}}'/>
+        </div>
+        <div id="en_body">
+            <label for="en_content">Κείμενο (Αγγλικά)</label>
+            <div id="en_errcontent" class="error"></div>
+            <textarea id="en_content" class="form-control">{{event.content.en_text}}</textarea>
+        </div>
+    </article>
+    <button id="new_language" class="btn button" style="display: none;">Νέα Γλώσσα (Αγγλικά)</button>
+	{{else}}
+	<article id="other_languages"></article>
+	<button id="new_language" class="btn button">Νέα Γλώσσα (Αγγλικά)</button>
+	{{/if}}
+	<hr>
+	<div id="event_info">
+		<div class="form-group row">
+			<label for="start_date" class="col-sm-6 col-form-label">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				<span class="label_content">Ημερομηνία Έναρξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_startdate" class="error"></div>
+				<input id="start_date" class="form-control" type="date" value="{{changeDateFormatTypeDate event.content.startDate}}"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="end_date" class="col-sm-6 col-form-label">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				<span class="label_content">Ημερομηνία Λήξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_enddate" class="error"></div>
+				<input id="end_date" class="form-control" type="date" value="{{changeDateFormatTypeDate event.content.endDate}}"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="start_time" class="col-sm-6 col-form-label">
+				<span class="label_content">Ώρα Έναρξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_start_time"></div>
+				<input id="start_time" class="form-control" type="text" value="{{event.content.startTime}}"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="end_time" class="col-sm-6 col-form-label">
+				<span class="label_content">Ώρα Λήξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_end_time" class="error"></div>
+				<input id="end_time" class="form-control" type="text" value="{{event.content.endTime}}"/>
+			</div>
+		</div>
+	</div>
+	<hr>
+	{{#ifEqual event.content.state 'canceled'}}
+		<div id="reset_container" class="form-check">
+			<label class="form-check-label">
+		  		Η εκδήλωση έχει ακυρωθεί. Επαναφορά;
+			</label>
+			<input id="reset" type="checkbox" class="form-check-input">
+		</div>
+		<hr>
+	{{/ifEqual}}
+	{{#ifEqual event.content.state 'finished'}}
+		<div id="gallery_container" mesa-data="upload_gallery">
+			{{#if gallery}}
+				<h4>Οι φωτογραφίες που έχετε αναρτήσει από την εκδήλωση :</h4>
+				<div id="uploaded_gallery">
+					{{#each gallery}}
+						<div class="img_container">
+							<a href="#" class="tile" data-toggle="modal" data-target="#trslphotos"><img class="image" src="/image/gallery/{{this}}"  alt="recent photo"></a>
+							<p class="delete_container">
+								<button class="delete_event_img btn btn-danger" mesa-data="{{this}}" type="submit" title="Διαγραφή απο τη συλλογή">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</p>
+						</div>
+					{{/each}}
+				</div>
+			{{else}}
+				<div id="gallery_empty_title">Η εκδήλωση έχει ολοκληρωθεί. Ανεβάστε εικόνες από την εκδήλωση :</div>
+			{{/if}}
+		</div>
+		<div id="upload_photo_container">
+			<label class="custom-file">
+			  <input id="event_photos" class="custom-file-input" type="file" multiple>
+			  <span class="custom-file-control"></span>
+			</label>
+			<div id="event_gallery">
+			</div>
+		</div>
+		<hr>
+	{{/ifEqual}}
+
+	<div class="editevent_btn">
+		<button id="submit_edit_event" mesa-data="{{event._id}}" class="btn button btn-primary">Αποθήκευση</button>
+	</div>
+</section>
+
+<div id="trslphotos" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"><img src="" class="img-responsive"></div>
+            <div class="modal-footer">
+                <a class="carousel-control left showprev" href="#recent-photos" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="carousel-control right shownext" href="#recent-photos" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

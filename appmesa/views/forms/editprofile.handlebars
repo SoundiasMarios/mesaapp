@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="edit_user_profile">
+	<h1 class="title"> Λογαριασμός Χρήστη</h1>
+	<hr>
+	<div id="body">
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="firstname" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Όνομα</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_firstname" class="error"></div>
+					<input id="firstname" class="form-control" type="text" value="{{user.firstname}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="lastname" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Επώνυμο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_lastname" class="error"></div>
+					<input id="lastname" class="form-control" type="text" value="{{user.lastname}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="username" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Username</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_username" class="error"></div>
+					<input id="username" class="form-control" type="text" value="{{user.username}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="email" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Email</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_email" class="error"></div>
+					<input id="email" class="form-control" type="text" value="{{user.email}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				{{#ifEqual user.username current_user}}
+					<label for="password" class="col-sm-4 col-md-4 col-form-label">
+						<span class="glyphicon glyphicon-asterisk"></span>
+						<span class="label_content">Κωδικός</span>
+					</label>
+					<div class="col-sm-8 col-md-8">
+						<div id="err_password" class="error"></div>
+						<div class="input-group">
+							<input id="password" class="form-control" type="password" value="{{user.password}}"/>
+							<span class="input-group-addon"><span id="show_password" class="glyphicon glyphicon-eye-open"></span></span>
+						</div>
+					</div>
+				{{/ifEqual}}
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="birthdate" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Ημερομηνία Γέννησης</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_birthdate" class="error"></div>
+					<input id="birthdate" class="form-control" type="date" value="{{changeDateFormatTypeDate user.birthdate}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="gender" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Φύλο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<form id="gender">
+						<input type="radio" name="gender" value="default"
+						{{#ifEqual user.gender 'default'}}
+							checked="checked"
+						{{/ifEqual}}
+						/> <p>Μη εφαρμόσιμο</p>
+
+						<input type="radio" name="gender" value="male"
+						{{#ifEqual user.gender 'male'}}
+							checked="checked"
+						{{/ifEqual}}
+						/> <p>Άνδρας</p>
+
+						<input type="radio" name="gender" value="female"
+						{{#ifEqual user.gender 'female'}}
+							checked="checked"
+						{{/ifEqual}}
+						/> <p>Γυναίκα</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="city" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Πόλη</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_city" class="error"></div>
+					<input id="city" class="form-control" type="text" value="{{user.city}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="phone" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Τηλέφωνο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_phone" class="error"></div>
+					<input id="phone" class="form-control" type="text" value="{{user.phone}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div id="err_moreinfo" class="error"></div>
+			<div class="form-group row">
+				<label for="moreinfo" class="col-sm-4 col-md-4 col-form-label">
+					<span class="label_content">Περισσότερες Πληροφορίες</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<textarea id="moreinfo" class="form-control" placeholder="Πληκτρολογήστε κάτι για εσάς....">{{user.moreinfo}}</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="photo" class="col-sm-4 col-md-4 col-form-label">
+					<span class="label_content">Φωτογραφία</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<input id="photo" type="file" accept="image/*" />
+
+					<img id="photo_profile" src="/image/userprofile/{{user.username}}">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="buttons_container">
+		<button id="submit_editprofile" mesa-data="{{user.username}}" class="btn btn-primary" type="submit">Αποθήκευση</button>
+		<!-- <button id="cancel_action" mesa-data="{{user.username}}" class="btn btn-default" type="submit">Ακύρωση</button> -->
+	</div>
+</section>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="signup">
+	<h1 class="title">Δημιουργία Χρήστη</h1>
+	<hr>
+	<div id="body">
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="firstname" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Όνομα</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_firstname" class="error"></div>
+					<input id="firstname" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="lastname" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Επώνυμο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_lastname" class="error"></div>
+					<input id="lastname" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="username" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Username</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_username" class="error"></div>
+					<input id="username" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="email" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Email</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_email" class="error"></div>
+					<input id="email" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="birthdate" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Ημερομηνία Γέννησης</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_birthdate" class="error"></div>
+					<input id="birthdate" class="form-control" type="date"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="gender" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Φύλο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<form id="gender">
+						<input type="radio" name="gender" value="default" checked="checked"/> <p>Μη εφαρμόσιμο</p>
+						<input type="radio" name="gender" value="male" /> <p>Άνδρας</p>
+						<input type="radio" name="gender" value="female" /> <p>Γυναίκα</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="city" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Πόλη</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_city" class="error"></div>
+					<input id="city" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="phone" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Τηλέφωνο</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<div id="err_phone" class="error"></div>
+					<input id="phone" class="form-control" type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div id="err_moreinfo" class="error"></div>
+			<div class="form-group row">
+				<label for="moreinfo" class="col-sm-4 col-md-4 col-form-label">
+					<span class="label_content">Περισσότερες Πληροφορίες</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<textarea id="moreinfo" class="form-control" placeholder="Πληκτρολογήστε κάτι για εσάς...."></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="photo" class="col-sm-4 col-md-4 col-form-label">
+					<span class="label_content">Φωτογραφία</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<input id="photo" type="file" accept="image/*" />
+
+					<img id="photo_profile" src="/image/signup/d">
+				</div>
+			</div>
+		</div>
+		<div class="field_form">
+			<div class="form-group row">
+				<label for="role" class="col-sm-4 col-md-4 col-form-label">
+					<span class="glyphicon glyphicon-asterisk"></span>
+					<span class="label_content">Τύπος Χρήστη</span>
+				</label>
+				<div class="col-sm-8 col-md-8">
+					<form id="role">
+						<input type="radio" name="role" value="simple_user" checked="checked"/> <p>Απλός</p>
+						<input type="radio" name="role" value="admin_user" /> <p>Διαχειριστής</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <hr> -->
+	<div id="signup_btn_container">
+		<button id="submit_signup" class="btn btn-primary" type="submit">Εγγραφή</button>
+	</div>
+</section>

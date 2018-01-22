@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{{#ifOR event.content.en_text gallery}}
+<nav id="post_nav">
+	<ul class="nav nav-tabs">
+	  	<li class="nav-item active">
+	    	<a class="nav-link event_content" href="#">Ελληνικά</a>
+	  	</li>
+	  	{{#if event.content.en_text}}
+	  	<li class="nav-item">
+	    	<a class="nav-link event_en_content" href="#">Αγγλικά</a>
+	  	</li>
+	  	{{/if}}
+	  	{{#if gallery}}
+		<li class="nav-item">
+			<a class="nav-link event_album" href="#">Φωτογραφίες</a>
+		</li>
+		{{/if}}
+	</ul>
+</nav>
+{{/ifOR}}
+
+<section class="display_cur_event">
+	<div class="event_text">	
+		{{{event.content.text}}}
+	</div>
+	{{#if event.content.en_text}}
+	<div class="event_en_text">
+		{{{event.content.en_text}}}
+	</div>
+	{{/if}}
+</section>
+
+{{#if gallery}}
+<div id="gallery_container" mesa-data="{{event.content._id}}">
+	<!-- <h4 class="gallery_title">Φωτογραφίες από την εκδήλωση</h4> -->
+	<div id="gallery">
+		{{#each gallery}}
+			<div class="img_container">
+				<a href="#" class="tile" data-toggle="modal" data-target="#trslphotos"><img class="image" src="/image/gallery/{{this}}"  alt="recent photo"></a>
+			</div>
+		{{/each}}
+	</div>
+</div>
+{{/if}}

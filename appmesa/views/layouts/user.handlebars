@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MESA</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		
+		<script type="text/javascript" src="/js/reload_back_page.js"></script>
+
+		<link href = "/lib/bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/mesa.css">
+		<link rel="stylesheet" type="text/css" href="/lib/jquery.timepicker.css">
+		<link rel="stylesheet" type="text/css" href="/lib/jquery-confirm/dist/jquery-confirm.min.css">
+
+		<script type="text/javascript" src="/lib/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/lib/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/form.js"></script>
+		<script type="text/javascript" src="/js/user.js"></script>
+		<script type="text/javascript" src="/js/post.js"></script>
+		<script type="text/javascript" src="/js/announcement.js"></script>
+		<script type="text/javascript" src="/js/event.js"></script>
+		<script type="text/javascript" src="/lib/jquery.timepicker.min.js"></script>
+		<script type="text/javascript" src="/lib/jquery-confirm/dist/jquery-confirm.min.js"></script>
+		<script type="text/javascript" src="/js/gallery.js"></script>
+		
+	</head>
+	<body>
+	<nav class="navbar navbar-inverse">
+		  	<div class="container-fluid">
+		    	<div class="navbar-header">
+		      		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mesa_navbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>                        
+		      		</button>
+		      		<a class="navbar-brand" href="/">MESA</a>
+		    	</div>
+		    	<div id="mesa_navbar" class="collapse navbar-collapse">
+		    		<div class="col-sm-1 col-md-1">
+        			</div>
+        			<div class="navbar-left navbar-form">
+			            <div id="search-input" class="input-group">
+			                <input id="search_text" type="text" class="form-control" placeholder="Αναζήτηση" />
+			                <span class="input-group-btn">
+			                    <button id="search_btn" class="btn btn-default" type="button">
+			                        <i class="glyphicon glyphicon-search"></i>
+			                    </button>
+			                </span>
+			            </div>
+				    </div>
+		      		<ul class="nav navbar-nav navbar-right account">
+			      		<li class="dropdown">
+			      			<a class="dropdown-toggle" data-toggle="dropdown"  href="#">
+		      					<img id="user_photo_profile" src="/image/profile" />
+			      			</a>
+			          		<ul class="dropdown-menu">
+				            	<li>Έχετε συνδεθεί ως : {{logged_user}}</li>
+				            	<li>
+			      					<button id="edit_profile" mesa-data="{{logged_user}}"><span class="glyphicon glyphicon-edit"></span> Ο Λογαριασμός μου</button>
+			      					<button id="submit_signout"><span class="glyphicon glyphicon-log-out"></span> Έξοδος</button>
+				            	</li>
+			          		</ul>
+			        	</li>
+        			</ul>
+		      		<ul class="nav navbar-nav navbar-right menu">
+		        		<li class="dropdown">
+		        			{{#if posts_selected}}
+		        			<a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Δημοσιεύσεις <span class="caret"></span></a>
+		          			<ul class="dropdown-menu">
+		          				{{#if allposts_selected}}
+					            <li class="selected"><a href="/" >Όλες</a></li>
+					            {{else}}
+					            <li><a href="/" >Όλες</a></li>
+					            {{/if}}
+					            {{#if announcements_selected}}
+					            <li class="selected"><a href="#" id="show_all_announcements">Ανακοινώσεις</a></li>
+					            {{else}}
+					            <li><a href="#" id="show_all_announcements">Ανακοινώσεις</a></li>
+					            {{/if}}
+					            {{#if events_selected}}
+					            <li class="selected"><a href="#" id="show_all_events">Εκδηλώσεις</a></li>
+					            {{else}}
+					            <li><a href="#" id="show_all_events">Εκδηλώσεις</a></li>
+					            {{/if}}
+		          			</ul>
+		        			{{else}}
+		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Δημοσιεύσεις <span class="caret"></span></a>
+		          			<ul class="dropdown-menu">
+					            <li><a href="/" >Όλες</a></li>
+					            <li><a href="#" id="show_all_announcements">Ανακοινώσεις</a></li>
+					            <li><a href="#" id="show_all_events">Εκδηλώσεις</a></li>
+		          			</ul>
+		          			{{/if}}
+		        		</li>
+		        		<li class="dropdown">
+		        			{{#if newpost_selected}}
+		        			<a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Δημιουργία <span class="caret"></span></a>
+	          				<ul class="dropdown-menu">
+	          					{{#if newannouncement_selected}}
+					            <li class="selected"><a href="#" id="show_new_announcement_form">Ανακοίνωση</a></li>
+					            {{else}}
+					            <li><a href="#" id="show_new_announcement_form">Ανακοίνωση</a></li>
+					            {{/if}}
+					            {{#if newevent_selected}}
+					            <li class="selected"><a href="#" id="show_new_event_form">Εκδήλωση</a></li>
+					            {{else}}
+					            <li><a href="#" id="show_new_event_form">Εκδήλωση</a></li>
+					            {{/if}}
+		          			</ul>
+		        			{{else}}
+		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Δημιουργία <span class="caret"></span></a>
+	          				<ul class="dropdown-menu">
+					            <li><a href="#" id="show_new_announcement_form">Ανακοίνωση</a></li>
+					            <li><a href="#" id="show_new_event_form">Εκδήλωση</a></li>
+		          			</ul>
+		          			{{/if}}
+		        		</li>
+		        		<li class="dropdown">
+		        			{{#if myposts_selected}}
+		          			<a class="dropdown-toggle selected" data-toggle="dropdown" href="#">Οι Δημοσιεύσεις μου <span class="caret"></span></a>
+		          			<ul class="dropdown-menu">
+					            {{#if allmyposts_selected}}
+					            <li class="selected"><a href="#" id="user_posts">Όλες</a></li>
+					            {{else}}
+					            <li><a href="#" id="user_posts">Όλες</a></li>
+					            {{/if}}
+			          			{{#if myannouncements_selected}}
+					            <li class="selected"><a href="#" id="user_announcements">Ανακοινώσεις</a></li>
+					            {{else}}
+					            <li><a href="#" id="user_announcements">Ανακοινώσεις</a></li>
+					            {{/if}}
+			          			{{#if myevents_selected}}
+					            <li class="selected"><a href="#" id="user_events">Εκδηλώσεις</a></li>
+					            {{else}}
+					            <li><a href="#" id="user_events">Εκδηλώσεις</a></li>
+					            {{/if}}
+		          			</ul>
+		          			{{else}}
+		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Οι Δημοσιεύσεις μου <span class="caret"></span></a>
+		          			<ul class="dropdown-menu">
+					            <li><a href="#" id="user_posts">Όλες</a></li>
+					            <li><a href="#" id="user_announcements">Ανακοινώσεις</a></li>
+					            <li><a href="#" id="user_events">Εκδηλώσεις</a></li>
+		          			</ul>
+		          			{{/if}}
+		        		</li>
+		     		</ul>
+		   		</div>
+		  </div>
+		</nav>
+
+		<section id="mesa_container">
+			<div id="server_message" class="error"></div>
+			{{{body}}}
+		</section>
+	</body>
+</html>

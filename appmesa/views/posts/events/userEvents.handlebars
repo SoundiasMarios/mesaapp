@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<section id="display_user_events">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		{{#if userEvents}}
+		{{#each userEvents}}
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading{{this._id}}">
+      				<h4 class="panel-title">
+						{{#if this.content.en_title}}
+							<span class="content_title"> {{this.content.title}} | {{this.content.en_title}}</span>
+						{{else}}
+							<span class="content_title"> {{this.content.title}}</span>
+						{{/if}}
+					</h4>
+					<hr>
+					<div class='content_info'>
+			      		<div class="group">
+			      			<p><span class="glyphicon glyphicon-file"></span> Εκδήλωση</p>
+			      		</div>
+			      		<div class="group">
+							<div class="posted_by">
+								<p>
+									<span class="glyphicon glyphicon-user"></span>
+									<span> {{this.postedBy.username}},</span>
+									<span> {{changeDateFormat this.uploadDate}}</span>
+								</p>
+							</div>
+						</div>
+						<div class="group">
+							<div class="start_date">
+								<p><span class="glyphicon glyphicon-calendar"></span> <span>{{changeDateFormat this.content.startDate}}</span></p>
+							</div>
+							<div class="end_date">
+								<p> - <span>{{changeDateFormat this.content.endDate}}</span></p>
+							</div>
+						</div>
+						<div class="group">
+							<div class="start_time">
+								<p><span class="glyphicon glyphicon-time"></span> <span>{{this.content.startTime}}</span></p>
+							</div>
+							<div class="end_time">
+								<p> - <span>{{this.content.endTime}}</span></p>
+							</div>
+						</div>
+						<div class="group">
+							<p><span class="glyphicon glyphicon-info-sign"></span> <span id="event_state">{{eventStatusType this.content.state}}</span></p>
+						</div>
+						{{#if this.content.en_title}}
+						<div class="group">
+			        		<p><span class="glyphicon glyphicon-globe"></span> Ελληνικά, Αγγλικά</p>
+			        	</div>
+			        	{{/if}}
+					</div>
+			        <div class="tags">
+						<span class="glyphicon glyphicon-tags"></span>
+						{{#each this.tags}}
+						<a href="#" class="tag" mesa-data="{{this}}">#{{this}}</a>
+						{{/each}}
+					</div>
+					<div class="modify_buttons_container">
+						<button class="edit_event button btn btn-primary" mesa-data="{{this._id}}" type="button" title="Επεξεργασία εκδήλωσης">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						{{#ifEqualOR this.content.state 'canceled' 'finished'}}
+							<button class="cancel_event button btn btn-warning" mesa-data="{{this._id}}" type="button" title="Η εκδήλωση έχει ακυρωθεί ή ολοκληρωθεί" disabled>
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						{{else}}
+							<button class="cancel_event button btn btn-warning" mesa-data="{{this._id}}" type="button" title="Ακύρωση εκδήλωσης">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						{{/ifEqualOR}}
+						<button class="delete_event button btn btn-danger" mesa-data="{{this._id}}" type="button" title="Διαγραφή εκδήλωσης">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</div>
+				</div>
+		        <div id="collapse{{this._id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{this._id}}">
+					<div class="panel-body"></div>
+				</div>
+		      	<div class="btn_show_post">
+					<button class="moreinfolink_event btn btn-default collapsed" mesa-data="{{this._id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{this._id}}" aria-expanded="false" aria-controls="collapse{{this._id}}" type="submit"><span class="glyphicon glyphicon-menu-down"></span></button>
+				</div>
+			</div>
+		{{/each}}
+		{{#ifEqual userEvents.length postsLimit}}
+			<div id="btn_container">
+				<button id="more_userevents" class="btn" mesa-next-page="1">Εμφάνιση Περισσότερων</button>
+			</div>
+		{{/ifEqual}}
+		{{else}}
+		<p id="empty_post_list">Δεν έχετε δημοσιεύσει καμία εκδήλωση</p>
+		{{/if}}
+	</div>
+</section>
+
+<div id="trslphotos" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"><img src="" class="img-responsive"></div>
+            <div class="modal-footer">
+                <a class="carousel-control left showprev" href="#recent-photos" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="carousel-control right shownext" href="#recent-photos" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

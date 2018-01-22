@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MESA-Screen</title>
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/device.css">
+		<link rel = "stylesheet" href = "/lib/bootstrap/css/bootstrap.min.css">
+		
+		<script type="text/javascript" src="/lib/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/lib/socket.io.min.js"></script>
+		<script type="text/javascript" src="/lib/fingerprint.js"></script>
+		<script type="text/javascript" src="/js/authentication_device.js"></script>
+	</head>
+	<body>
+		<section id="device_auth_container">
+			<h1 id='title'> Σύνδεση συσκευής στο σύστημα</h1>
+			<form id='device_auth_form'>
+				<div class="device_auth_field">
+					<div id="device_auth_server_msg" class="error"></div>
+				</div>
+				<div class="device_auth_field">
+					<div class="form-group row">
+				        <label for="device_auth_name" class="col-sm-4 col-md-4 col-form-label">Όνομα Συσκευής</label>
+				        <div class="col-sm-8 col-md-8">
+				        	<div class="input-group">
+				        		<span class="input-group-addon"><span class="material-icons icon">devices</span></span>
+				        		<input id="device_auth_name" class="form-control" type="text" value="PC"/>
+				        	</div>
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="device_auth_field">
+					<div class="form-group row">
+				        <label for="device_auth_key" class="col-sm-4 col-md-4 col-form-label">Κωδικός</label>
+				        <div class="col-sm-8 col-md-8">
+				        	<div class="input-group">
+				        		<span class="input-group-addon"><span id="show_password" class="glyphicon glyphicon-lock icon"></span></span>
+				        		<input id="device_auth_key" class="form-control" type="password" value="1234567890"/>
+				        	</div>
+				    	</div>
+				    </div>
+			    </div>
+			    <div id="device_auth_btn_container">
+                    <button id="submit_new_device" class="btn btn-primary" type="button">Σύνδεση</button>
+                </div>
+			</form>
+		</section>
+
+		 <!-- <i class="material-icons">devices</i> -->
+	</body>
+</html>
+
+

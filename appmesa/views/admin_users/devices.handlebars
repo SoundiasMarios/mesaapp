@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<section id="display_all_devices">
+	<h1 id="title">Οθόνες</h1>
+	<!-- <button id="refresh_device_list" class="btn" type="button"><span class="glyphicon glyphicon-refresh"></span></button> -->
+	<div id="server_msg"></div>
+	<div id="device_list">
+	{{#ifNotEmpty devices}}
+		{{#each devices}}
+			<div class="device_field form-group row">
+				<div class="device_name col-sm-4">
+					<span class="material-icons icon" title="Όνομα συσκευής">devices</span>
+					<span class="name">{{this.deviceName}}</span>
+				</div>
+				{{#if this.socket.connected }}
+					<p class="connection col-sm-3" title="Κατάσταση συσκευής"><span class="material-icons icon">cast_connected</span>Σε σύνδεση</p>
+				{{else}}
+					<p class="connection col-sm-3" title="Κατάσταση συσκευής"><span class="material-icons icon">cast_connected</span>Αποσυνδεδεμένη</p>
+				{{/if}}
+
+
+
+				<form class="show_hide_device col-sm-3">
+					<span class="material-icons icon"  title="Εμφάνιση περιεχομένου στη συσκευή">dvr</span>
+					{{#if this.showOnScreen }}
+					 	<input id="show" type="radio" name="device_status" value="true" checked="checked" mesa-data="{{this.fingerprint}}" />
+						<label for="show">Εμφάνιση</label>
+					 	<input id="hide" type="radio" name="device_status" value="false" mesa-data="{{this.fingerprint}}" />
+					 	<label for="hide">Απόκρυψη</label>
+					{{else}}
+					 	<input id="show" type="radio" name="device_status" value="true" mesa-data="{{this.fingerprint}}" />
+						<label for="show">Εμφάνιση</label>
+					 	<input id="hide" type="radio" name="device_status" value="false" checked="checked" mesa-data="{{this.fingerprint}}" />
+					 	<label for="hide">Απόκρυψη</label>
+					{{/if}}
+				</form>
+				<div class="delete_btn col-sm-2">
+					<span class="glyphicon glyphicon-trash" title="Διαγραφή συσκευής από τη λίστα"></span>
+					<button class="delete_device btn btn-link" mesa-data="{{this.fingerprint}}" type="button">Διαγραφή</button>
+				</div>
+			</div>
+			<hr>
+		{{/each}}
+	{{else}}
+		<div id="empty_device_list">Δεν υπάρχουν συνδεδεμένες συσκευές στο σύστημα</div>
+	{{/ifNotEmpty}}
+	</div>
+	<div id="button_container">
+		{{#ifEqual presentation_running true}}
+			<button id="start_presentation" class="btn" type="button" disabled>Έναρξη Παρουσίασης</button>
+			<button id="restart_presentation" class="btn btn-primary" type="button">Επανεκκίνηση Παρουσίασης</button>
+			<button id="stop_presentation" class="btn btn-primary" type="button">Τερματισμό Παρουσίασης</button>
+		{{else}}
+			<button id="start_presentation" class="btn btn-primary" type="button">Έναρξη Παρουσίασης</button>
+			<button id="restart_presentation" class="btn" type="button" disabled>Επανεκκίνηση Παρουσίασης</button>
+			<button id="stop_presentation" class="btn" type="button" disabled>Τερματισμό Παρουσίασης</button>
+		{{/ifEqual}}
+	</div>
+</section>

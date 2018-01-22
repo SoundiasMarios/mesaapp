@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<div id="server_msg"></div>
+<div id="client_msg"></div>
+<section id="new_event">
+	<div id="header">
+		<label for="title">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Τίτλος</span>
+		</label>
+		<div id="errtitle" class="error"></div>
+		<input id="title" class="form-control" type="text"/>
+	</div>
+	<div id="body">
+		<label for="content">
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<span class="label_content">Κείμενο</span>
+		</label>
+		<div id="errcontent" class="error"></div>
+		<textarea id="content" class="form-control"></textarea>
+	</div>
+	<div id="tags_container">
+		<label for="tags">Ετικέτες</label>
+		<input id="tags" type="text" placeholder="#ITE#Πανεπιστήμιο Κρήτης" />
+	</div>
+	<hr>
+	<article id="other_languages"></article>
+	<button id="new_language" class="btn button">Νέα Γλώσσα (Αγγλικά)</button>
+	<hr>
+
+	<div id="event_info">
+		<div class="form-group row">
+			<label for="start_date" class="col-sm-6 col-form-label">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				<span class="label_content">Ημερομηνία Έναρξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_startdate" class="error"></div>
+				<input id="start_date" class="form-control" type="date"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="end_date" class="col-sm-6 col-form-label">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				<span class="label_content">Ημερομηνία Λήξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_enddate" class="error"></div>
+				<input id="end_date" class="form-control" type="date"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="start_time" class="col-sm-6 col-form-label">
+				<span class="label_content">Ώρα Έναρξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_start_time"></div>
+				<input id="start_time" class="form-control" type="text" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="end_time" class="col-sm-6 col-form-label">
+				<span class="label_content">Ώρα Λήξης</span>
+			</label>
+			<div class="col-sm-6">
+				<div id="err_end_time" class="error"></div>
+				<input id="end_time" class="form-control" type="text">
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="newevent_btn">
+		<button id="submit_event" class="btn button btn-primary">Δημοσίευση</button>
+	</div>
+</section>

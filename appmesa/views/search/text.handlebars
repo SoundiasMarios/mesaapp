@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<section id="display_search_posts">
+	{{#if posts}}
+	<div id="search_text_result"><span id="description">Αποτελέσματα για το : </span> <span id="text_query">{{text}}</span></div>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		{{#each posts}}
+			<div class="panel panel-default">
+				
+				{{#ifEqual this.type 'announcement'}}
+					{{#each this.announcement_content}}
+						<div class="panel-heading" role="tab" id="heading{{this._id}}">
+					      	
+					      	<h4 class="panel-title">
+						        {{#if this.en_title}}
+									<span class="content_title"> {{this.title}} - {{this.en_title}}</span>
+								{{else}}
+									<span class="content_title"> {{this.title}}</span>
+								{{/if}}
+					      	</h4>
+					      	<hr>
+					      	<div class='content_info'>
+					      		<div class="group">
+					      			<p><span class="glyphicon glyphicon-file"></span> Ανακοίνωση</p>
+					      		</div>
+					      		<div class="group">
+									<div class="posted_by">
+										<p>
+											<span class="glyphicon glyphicon-user"></span>
+											{{#if ../this.postedBy.username}}
+												<span> {{../../this.postedBy.username}},</span>
+											{{else}}
+												<span> - ,</span>
+											{{/if}}
+											<span> {{changeDateFormat ../this.uploadDate}}</span>
+										</p>
+									</div>
+								</div>
+								{{#if this.en_title}}
+								<div class="group">
+					        		<p><span class="glyphicon glyphicon-globe"></span> Ελληνικά, Αγγλικά</p>
+					        	</div>
+					        	{{/if}}
+							</div>
+							<div class="tags">
+								<span class="glyphicon glyphicon-tags"></span>
+								{{#each ../this.tags}}
+								<a href="#" class="tag" mesa-data="{{this}}">#{{this}}</a>
+								{{/each}}
+							</div>
+					    </div>
+					    <div id="collapse{{this._id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{this._id}}">
+				      		<div class="panel-body"></div>
+				      	</div>
+				      	<div class="btn_show_post">
+							<button class="moreinfolink_announcement btn btn-default collapsed" mesa-data="{{../this._id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{this._id}}" aria-expanded="false" aria-controls="collapse{{this._id}}" type="submit"><span class="glyphicon glyphicon-menu-down"></span></button>
+						</div>
+					{{/each}}
+				{{else}}
+					{{#each this.event_content}}
+						<div class="panel-heading" role="tab" id="heading{{this._id}}">
+					      	
+				      		<h4 class="panel-title">
+						        {{#if this.en_title}}
+									<span class="content_title"> {{this.title}} - {{this.en_title}}</span>
+								{{else}}
+									<span class="content_title"> {{this.title}}</span>
+								{{/if}}
+					      	</h4>
+					      	<hr>
+					      	<div class='content_info'>
+					      		<div class="group">
+					      			<p><span class="glyphicon glyphicon-file"></span> Εκδήλωση</p>
+					      		</div>
+					      		<div class="group">
+									<div class="posted_by">
+										<p>
+											<span class="glyphicon glyphicon-user"></span>
+											{{#if ../this.postedBy.username}}
+												<span> {{../../this.postedBy.username}},</span>
+											{{else}}
+												<span> - ,</span>
+											{{/if}}
+											<span> {{changeDateFormat ../this.uploadDate}}</span>
+										</p>
+									</div>
+									<!-- <div class="date">
+										<p><span class="glyphicon glyphicon-calendar"></span> <span>{{changeDateFormat ../this.uploadDate}}</span></p>
+									</div>
+									<div class="posted_by">
+										<p><span class="glyphicon glyphicon-user"></span> <span>{{../this.postedBy.username}}</span></p>
+									</div> -->
+								</div>
+								<!-- <br> -->
+								<div class="group">
+									<div class="start_date">
+										<p><span class="glyphicon glyphicon-calendar"></span> <span>{{changeDateFormat this.startDate}}</span></p>
+									</div>
+									<div class="end_date">
+										<p> - <span>{{changeDateFormat this.endDate}}</span></p>
+									</div>
+								</div>
+								<div class="group">
+									<div class="start_time">
+										<p><span class="glyphicon glyphicon-time"></span> <span>{{this.startTime}}</span></p>
+									</div>
+									<div class="end_time">
+										<p> - <span>{{this.endTime}}</span></p>
+									</div>
+								</div>
+								<div class="group">
+									<p><span class="glyphicon glyphicon-info-sign"></span> <span>{{eventStatusType this.state}}</span></p>
+								</div>
+								{{#if this.en_title}}
+								<div class="group">
+					        		<p><span class="glyphicon glyphicon-globe"></span> Ελληνικά, Αγγλικά</p>
+					        	</div>
+					        	{{/if}}
+							</div>
+							<div class="tags">
+								<span class="glyphicon glyphicon-tags"></span>
+								{{#each ../this.tags}}
+								<a href="#" class="tag" mesa-data="{{this}}">#{{this}}</a>
+								{{/each}}
+							</div>
+					    </div>
+					    <div id="collapse{{this._id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{this._id}}">
+				      		<div class="panel-body"></div>
+				    	</div>
+				      	<div class="btn_show_post">
+							<button class="moreinfolink_event btn btn-default collapsed" mesa-data="{{../this._id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{this._id}}" aria-expanded="false" aria-controls="collapse{{this._id}}" type="submit"><span class="glyphicon glyphicon-menu-down"></span></button>
+						</div>
+					{{/each}}
+				{{/ifEqual}}
+			</div>
+		{{/each}}
+	</div>
+	{{else}}
+	<div id="search_text_result"><span id="description">Δεν βρέθηκαν αποτελέσματα για το : </span> <span id="text_query">{{text}}</span></div>
+	{{/if}}
+</section>
+
+<div id="trslphotos" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"><img src="" class="img-responsive"></div>
+            <div class="modal-footer">
+                <a class="carousel-control left showprev" href="#recent-photos" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="carousel-control right shownext" href="#recent-photos" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
